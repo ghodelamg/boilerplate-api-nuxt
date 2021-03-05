@@ -1,11 +1,8 @@
 <template>
   <div>
-    <v-card class=" mx-auto mb-5">
+    <v-card class="mx-auto mb-5">
       <v-card-text>
-        <drag-and-drop-file
-          ref="dragAndDropFile"
-          :import-props="importProps"
-        />
+        <drag-and-drop-file ref="dragAndDropFile" :import-props="importProps" />
       </v-card-text>
     </v-card>
     <v-data-table
@@ -23,29 +20,17 @@
     >
       <template v-slot:top>
         <v-layout>
-          <v-flex
-            xs12
-            sm12
-            md12
-            lg12
-          >
-            <h5 class="mt-4 ml-4">
-              Import History
-            </h5>
+          <v-flex xs12 sm12 md12 lg12>
+            <h5 class="mt-4 ml-4">Import History</h5>
           </v-flex>
         </v-layout>
         <v-layout>
-          <v-flex
-            xs12
-            sm12
-            md4
-            lg4
-          >
+          <v-flex xs12 sm12 md4 lg4>
             <v-text-field
               v-model="searchModel"
               label="Search"
               class="mx-4 mt-4"
-              prepend-inner-icon="search"
+              prepend-inner-icon="mdi-magnify"
               @input="onSearch"
             />
           </v-flex>
@@ -72,10 +57,10 @@
               v-on="on"
               @click="onView(item.id)"
             >
-              {{ icons.mdiEye }}
+              mdi-eye
             </v-icon>
           </template>
-          <span>{{ $getConst('VIEW_DETAILS_TOOLTIP') }}</span>
+          <span>{{ $getConst("VIEW_DETAILS_TOOLTIP") }}</span>
         </v-tooltip>
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
@@ -84,19 +69,16 @@
               small
               class="mr-2"
               v-on="on"
-              @click="downloadFile(item.file_path,'DOWNLOAD_CSV')"
+              @click="downloadFile(item.file_path, 'DOWNLOAD_CSV')"
             >
-              {{ icons.mdiDownload }}
+              icons.mdi-download
             </v-icon>
           </template>
-          <span>{{ $getConst('DOWNLOAD_TOOLTIP') }}</span>
+          <span>{{ $getConst("DOWNLOAD_TOOLTIP") }}</span>
         </v-tooltip>
       </template>
     </v-data-table>
-    <error-modal
-      v-model="errorDialog"
-      :error-arr="errorArr"
-    />
+    <error-modal v-model="errorDialog" :error-arr="errorArr" />
     <import-error-modal
       v-model="importErrorDialog"
       :import-error-arr="importErrorArr"

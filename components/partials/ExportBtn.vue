@@ -3,7 +3,7 @@
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
         <v-btn color="warning" class="mb-2 mr-2" v-on="on"
-          ><v-icon small>{{ icons.mdiExport }}</v-icon></v-btn
+          ><v-icon small>mdi-export</v-icon></v-btn
         >
       </template>
       <span>Export</span>
@@ -50,7 +50,7 @@ export default {
               this.errorArr = response.data.error;
               this.errorDialog = true;
             } else {
-              this.convertToCSV(this.exportProps.fileName, response.data);
+              this.convertToCSV(this.exportProps.fileName, response);
             }
           },
           (error) => {

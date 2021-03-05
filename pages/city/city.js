@@ -1,12 +1,12 @@
 import CustomTable from '~/components/customtable/table';
 import { mapState } from 'vuex';
-// import DeleteModal from '../../../partials/DeleteModal.vue';
-// import ExportBtn from '../../../partials/ExportBtn.vue';
-// import MultiDelete from '../../../partials/MultiDelete.vue';
-// import AddCity from './AddCity.vue';
+import DeleteModal from '~/components/partials/DeleteModal.vue';
+import ExportBtn from '~/components/partials/ExportBtn.vue';
+import MultiDelete from '~/components/partials/MultiDelete.vue';
+import AddCity from '~/components/city/AddCity.vue';
 import CommonServices from '../../common_services/common';
-// import Import from '../../../partials/Import.vue';
-// import ErrorModal from '../../../partials/ErrorModal.vue';
+import Import from '~/components/partials/Import.vue';
+import ErrorModal from '~/components/partials/ErrorModal.vue';
 
 export default CustomTable.extend({
     name: 'City',
@@ -57,12 +57,12 @@ export default CustomTable.extend({
     },
     mixins: [CommonServices],
     components: {
-        // DeleteModal,
-        // AddCity,
-        // ExportBtn,
-        // MultiDelete,
-        // Import,
-        // ErrorModal,
+        DeleteModal,
+        AddCity,
+        ExportBtn,
+        MultiDelete,
+        Import,
+        ErrorModal,
     },
     computed: {
         ...mapState({
@@ -73,7 +73,6 @@ export default CustomTable.extend({
     watch: {
     },
     created() {
-
 
     },
     methods: {

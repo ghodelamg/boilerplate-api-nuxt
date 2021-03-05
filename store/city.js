@@ -137,7 +137,7 @@ export const actions = {
     getById({ commit, state }) {
         return new Promise((resolve, reject) => {
             this.$axios.$get(`${baseUrl}cities/${state.editId}`).then((response) => {
-                commit('setModel', { model: response.data.data });
+                commit('setModel', { model: response.data });
                 resolve(response.data);
             }).catch((e) => {
                 reject(e);
@@ -154,6 +154,53 @@ export const actions = {
     export({ commit }, param) {
         return new Promise((resolve, reject) => {
             this.$axios.$get(`${baseUrl}cities-export?page=${param.page ? param.page : 1}&filter=${param.filter ? param.filter : ''}&search=${param.query ? param.query : ''}&sort=${param.orderBy ? param.orderBy : ''}&order_by=${param.ascending == 1 ? 'asc' : 'desc'}`).then((response) => {
+                resolve(response);
+            }).catch((e) => {
+                reject(e);
+            });
+        });
+    },
+    /**
+       * Used for import functionality (upload file)
+       * @param commit
+       * @param param
+       */
+    // eslint-disable-next-line no-unused-vars
+    import({ commit }, param) {
+        return new Promise((resolve, reject) => {
+            this.$axios.$post(`${baseUrl}cities-import-bulk`, param).then((response) => {
+                resolve(response);
+            }).catch((e) => {
+                reject(e);
+            });
+        });
+    },
+
+    /**
+     * Used to display import history
+     * @param commit
+     * @param param
+     */
+    // eslint-disable-next-line no-unused-vars
+    getAllImport({ commit }, param) {
+        return new Promise((resolve, reject) => {
+            this.$axios.$get(`${baseUrl}import-csv-log?page=${param.page}&per_page=${param.limit}&search=${param.query}&filter=${param.filter}&sort=${param.orderBy}&order_by=${param.ascending == 1 ? 'asc' : 'desc'}`).then((response) => {
+                resolve(response);
+            }).catch((e) => {
+                reject(e);
+            });
+        });
+    },
+
+    /**
+     * Used for display particular import history
+     * @param commit
+     * @param state
+     */
+    // eslint-disable-next-line no-unused-vars
+    getByImportId({ commit, state }) {
+        return new Promise((resolve, reject) => {
+            this.$axios.$get(`${baseUrl}import-csv-log/${state.editId}`).then((response) => {
                 resolve(response);
             }).catch((e) => {
                 reject(e);

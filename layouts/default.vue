@@ -59,11 +59,22 @@
     <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
+    <snackbar v-model="snackbar" />
   </v-app>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import Snackbar from "~/components/partials/Snackbar.vue";
 export default {
+  components: {
+    Snackbar,
+  },
+  computed: {
+    ...mapState({
+      snackbar: (state) => state.snackbar.snackbar,
+    }),
+  },
   data() {
     return {
       clipped: false,
@@ -84,6 +95,11 @@ export default {
           icon: "mdi-city",
           title: "City",
           to: "/city",
+        },
+        {
+          icon: "mdi-login",
+          title: "Sign In",
+          to: "/signin",
         },
       ],
       miniVariant: false,

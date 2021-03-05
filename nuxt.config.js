@@ -26,16 +26,18 @@ export default {
   plugins: [
     '~/plugins/constants',
     '~/plugins/directives',
+    '~/plugins/vee-validate',
+    '~/plugins/axios',
     { src: '~/plugins/vuex-persist', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
-
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/moment'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -70,5 +72,16 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  },
+    extend(config, { isDev, isClient }) {
+      // ..
+      config.module.rules.push({
+        test: /\.(ttf|eot|svg|csv|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+        loader: 'file-loader'
+      })
+      // Sets webpack's mode to development if `isDev` is true.
+      if (isDev) {
+        config.mode = 'development'
+      }
+    }
+  }
 }

@@ -80,7 +80,7 @@ export default {
               this.errorMessage = response.error;
             } else {
               this.$store.commit(
-                "snackbarStore/setMsg",
+                "snackbar/setMsg",
                 this.$getConst("DELETE_ACTION")
               );
               this.$emit("delete-success");

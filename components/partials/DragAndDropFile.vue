@@ -63,16 +63,14 @@
             </file-upload>
           </div>
           <div class="flex-center">
-            <button
-              icon
+            <v-btn
               type="button"
-              class="btn btn-primary font-weight-bold font-size-3 w100 mt-4"
+              class="light-blue darken-2 btn btn-primary font-weight-bold font-size-3 w100 mt-4"
               :disabled="files.length == 0"
               @click.prevent="uploadCsv"
             >
-              <v-icon class="fa fa-upload" />
               {{ $getConst("BTN_SUBMIT") }}
-            </button>
+            </v-btn>
           </div>
           <div class="text-center mt-4 mb-5">
             <a class="font-size-5" @click="downloadSampleFile()"
@@ -95,11 +93,11 @@
  * sample csv import file
  */
 import FileUpload from "vue-upload-component/dist/vue-upload-component.part.js";
-// import userCSV from "../../assets/samples/user.csv";
-// import stateCSV from "../../assets/samples/state.csv";
-// import cityCSV from "../../assets/samples/city.csv";
-// import countryCSV from "../../assets/samples/country.csv";
-// import hobbyCSV from "../../assets/samples/hobby.csv";
+import userCSV from "~/assets/samples/user.csv";
+import stateCSV from "~/assets/samples/state.csv";
+import cityCSV from "~/assets/samples/city.csv";
+import countryCSV from "~/assets/samples/country.csv";
+import hobbyCSV from "~/assets/samples/hobby.csv";
 /**
  * end of sample csv import file
  */
@@ -131,21 +129,21 @@ export default {
      */
     downloadSampleFile() {
       let fileUrl = "";
-      // if (this.importProps.modelName == "user") {
-      //   fileUrl = userCSV;
-      // }
-      // if (this.importProps.modelName == "state") {
-      //   fileUrl = stateCSV;
-      // }
-      // if (this.importProps.modelName == "city") {
-      //   fileUrl = cityCSV;
-      // }
-      // if (this.importProps.modelName == "country") {
-      //   fileUrl = countryCSV;
-      // }
-      // if (this.importProps.modelName == "hobby") {
-      //   fileUrl = hobbyCSV;
-      // }
+      if (this.importProps.modelName == "user") {
+        fileUrl = userCSV;
+      }
+      if (this.importProps.modelName == "state") {
+        fileUrl = stateCSV;
+      }
+      if (this.importProps.modelName == "city") {
+        fileUrl = cityCSV;
+      }
+      if (this.importProps.modelName == "country") {
+        fileUrl = countryCSV;
+      }
+      if (this.importProps.modelName == "hobby") {
+        fileUrl = hobbyCSV;
+      }
 
       if (fileUrl) {
         this.downloadFile(fileUrl, "DOWNLOAD_SAMPLE_CSV");
@@ -191,7 +189,7 @@ export default {
                   // if no error this code will execute
                   this.loading = false;
                   this.$store.commit(
-                    "snackbarStore/setMsg",
+                    "snackbar/setMsg",
                     this.$getConst("FILE_UPLOADED")
                   );
                   this.files = [];

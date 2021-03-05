@@ -1,35 +1,33 @@
-import moment from 'moment/min/moment-with-locales.min';
-import constantPlugin from './constantPlugin';
+// import moment from 'moment/min/moment-with-locales.min';
 
 export default {
   data() {
     return {};
   },
-  mixins: [constantPlugin],
   methods: {
     /* Current Time */
     currentTime() {
-      const current = parseInt(moment.utc().valueOf() / 1000, 10);
-      return moment.unix(current).format(this.$getConst('TIME_CONST'));
+      const current = parseInt(this.$moment.utc().valueOf() / 1000, 10);
+      return this.$moment.unix(current).format(this.$getConst('TIME_CONST'));
     },
 
     /* Current Date */
     currentDate() {
-      const current = parseInt(moment.utc().valueOf() / 1000, 10);
-      return moment.unix(current).format(this.$getConst('DATE_CONST'));
+      const current = parseInt(this.$moment.utc().valueOf() / 1000, 10);
+      return this.$moment.unix(current).format(this.$getConst('DATE_CONST'));
     },
 
     /* Current Date Time */
     currentDateTime() {
-      const current = parseInt(moment.utc().valueOf() / 1000, 10);
-      return moment.unix(current).format(this.$getConst('DATE_TIME_CONST'));
+      const current = parseInt(this.$moment.utc().valueOf() / 1000, 10);
+      return this.$moment.unix(current).format(this.$getConst('DATE_TIME_CONST'));
     },
 
     /* Format Date */
     getDateFormat(value) {
       let date = '';
       if (value != '' && value != null) {
-        date = moment(String(value)).format(this.$getConst('DATE_CONST'));
+        date = this.$moment(String(value)).format(this.$getConst('DATE_CONST'));
       }
       return date;
     },
@@ -39,8 +37,8 @@ export default {
       let date = '';
       if (value != '' && value != null) {
         // UTC date time to local date time:
-        date = moment.utc(value).toDate();
-        date = moment(date).format(this.$getConst('DATE_TIME_CONST'));
+        date = this.$moment.utc(value).toDate();
+        date = this.$moment(date).format(this.$getConst('DATE_TIME_CONST'));
       }
       return date;
     },
@@ -50,16 +48,16 @@ export default {
       let date = '';
       if (value != '' && value != null) {
         // UTC date time to local date time:
-        date = moment.utc(value).toDate();
-        date = moment(date).format(this.$getConst('DATE_TIME_CONST'));
+        date = this.$moment.utc(value).toDate();
+        date = this.$moment(date).format(this.$getConst('DATE_TIME_CONST'));
       }
       return date;
     },
   },
   beforeCreate() {
     // reset snackbar
-    this.$store.commit('snackbarStore/clearStore');
+    this.$store.commit('snackbar/clearStore');
   },
-  created() {},
+  created() { },
   filters: {},
 };

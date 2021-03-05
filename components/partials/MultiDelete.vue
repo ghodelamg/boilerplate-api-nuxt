@@ -3,7 +3,7 @@
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
         <v-btn color="error" class="mb-2 mr-2" v-on="on"
-          ><v-icon small>{{ icons.mdiDelete }}</v-icon>
+          ><v-icon small>mdi-delete</v-icon>
         </v-btn>
       </template>
       <span>Multiple Delete</span>
@@ -94,7 +94,7 @@ export default {
             } else {
               // if no error this code will execute
               this.$store.commit(
-                "snackbarStore/setMsg",
+                "snackbar/setMsg",
                 this.$getConst("DELETE_ACTION")
               );
               this.$emit("multiDelete");

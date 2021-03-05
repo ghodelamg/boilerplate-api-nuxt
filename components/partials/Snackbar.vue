@@ -17,24 +17,23 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   data() {
     return {
-      color: 'primary',
-      mode: '',
+      color: "primary",
+      mode: "",
       snackbar1: this.snackbar,
       timeout: 6000,
-      x: 'right',
-      y: 'bottom',
-
+      x: "right",
+      y: "bottom",
     };
   },
   computed: {
     ...mapState({
-      msg: (state) => state.snackbarStore.msg,
-      snackbar: (state) => state.snackbarStore.snackbar,
+      msg: (state) => state.snackbar.msg,
+      snackbar: (state) => state.snackbar.snackbar,
     }),
   },
   watch: {
@@ -43,7 +42,7 @@ export default {
       self.snackbar1 = val;
       // To reset the message and snackbar model to false once shown
       setTimeout(() => {
-        self.$store.commit('snackbarStore/clearStore');
+        self.$store.commit("snackbar/clearStore");
       }, this.timeout);
     },
   },

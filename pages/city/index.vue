@@ -4,6 +4,9 @@
       <v-tab v-index="$getConst('CITY')" href="#tab1">
         <p class="mt-2">Listing</p>
       </v-tab>
+      <v-tab v-importBulk="$getConst('CITY')" href="#tab2">
+        <p class="mt-2">Import</p>
+      </v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab">
       <v-tab-item value="tab1">
@@ -101,7 +104,7 @@
                     </template>
                     <span>Add City</span>
                   </v-tooltip>
-                  <!-- <export-btn
+                  <export-btn
                     ref="exportbtn"
                     v-export="$getConst('CITY')"
                     :export-props="exportProps"
@@ -113,9 +116,9 @@
                       v-deleteAll="$getConst('CITY')"
                       :delete-props="deleteProps"
                       @click.native="multipleDelete()"
-                      @multiDelete="getData()"
+                      @multiDelete="getData(), (selected = [])"
                     />
-                  </template> -->
+                  </template>
                 </div>
               </v-flex>
             </v-layout>
@@ -155,14 +158,21 @@
           </template>
         </v-data-table>
       </v-tab-item>
+      <v-tab-item value="tab2">
+        <v-card flat>
+          <v-card-text>
+            <import ref="importdata" :import-props="importProps" />
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
     </v-tabs-items>
-    <!-- <error-modal v-model="errorDialog" :error-arr="errorArr" />
+    <error-modal v-model="errorDialog" :error-arr="errorArr" />
     <add-city v-model="addCityModal" />
     <delete-modal
       v-model="modalOpen"
       :param-props="paramProps"
       :confirmation="confirmation"
-    /> -->
+    />
   </div>
 </template>
 

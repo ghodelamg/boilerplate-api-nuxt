@@ -132,7 +132,9 @@ export default Vue.extend({
         getData(promiseOnly) {
             if (this.urlApi && this.urlApi != '') {
                 return new Promise((resolve, reject) => {
+                    this.loading = true;
                     this.$store.dispatch(this.urlApi, this.state.pagination).then((response) => {
+                        this.loading = false;
                         if (response.error) {
                             this.setData([]);
                             reject(response.error);
@@ -145,6 +147,7 @@ export default Vue.extend({
                             }
                         }
                     }, (error) => {
+                        this.loading = false;
                         this.setData([]);
                         reject(error);
                     });
@@ -152,8 +155,8 @@ export default Vue.extend({
             }
         },
         /**
-             * reset pagination data but except filter and get data
-             */
+         * reset pagination data but except filter and get data
+         */
         refresh() {
             if (this.urlApi && this.urlApi != '') {
                 this.resetPagination();
