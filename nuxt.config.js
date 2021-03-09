@@ -28,6 +28,7 @@ export default {
     '~/plugins/directives',
     '~/plugins/vee-validate',
     '~/plugins/axios',
+    '~/plugins/repository',
     { src: '~/plugins/vuex-persist', ssr: false }
   ],
 
@@ -37,7 +38,8 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-    '@nuxtjs/moment'
+    '@nuxtjs/moment',
+    '@nuxtjs/composition-api'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

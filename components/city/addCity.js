@@ -48,7 +48,7 @@ export default {
                         name: this.model.name,
                     };
                     this.$store.dispatch(`city/${apiName}`, { model: sendData, editId }).then((response) => {
-                        if (response.error) {
+                        if (response.error || response == false) {
                             // loader disable if any error and display the error
                             this.loading = false;
                             this.errorMessage = response.error;
